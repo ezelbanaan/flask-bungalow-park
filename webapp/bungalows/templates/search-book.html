@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron py-3">
+    <div class="container">
+        <h2>Available options</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius in eros sit amet hendrerit. Maecenas ullamcorper molestie arcu sollicitudin congue. Donec lacinia mollis augue in pulvinar. Fusce id ultrices.</p>
+    </div>
+</div>
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">
+            {{message}}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="row">
+        
+        {% for bungalow in all_bungalows %}
+        <div class="col-sm-6">
+            <div class="card mb-5">
+            {% if bungalow.bungalow_type == 8 %}
+            <img class="card-img-top" height="300" src="{{url_for('static', filename='img/8personen.jpg')}}" alt="Card image cap">
+            {% elif bungalow.bungalow_type == 6 %}
+            <img class="card-img-top" height="300" src="{{url_for('static', filename='img/6personen.jpg')}}" alt="Card image cap">
+            {% elif bungalow.bungalow_type == 4 %}
+            <img class="card-img-top" height="300" src="{{url_for('static', filename='img/4personen.jpg')}}" alt="Card image cap">
+            {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ bungalow.name }}</h5>
+                    <p class="card-text">{{ bungalow.content }}</p>
+                    <p>
+                        <b>Number of persons:</b> {{ bungalow.bungalow_type }}
+                        <br>
+                        <b>Weekly rate:</b> €{{ bungalow.weekprice }}
+                    </p>
+                    <a href="{{ url_for('bookings.book', id=bungalow.id) }}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>            
+        {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

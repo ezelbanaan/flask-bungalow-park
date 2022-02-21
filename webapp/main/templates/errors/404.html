@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="mt-5">404</h1>
+        <h2>Unfortunately the requested page could not be found.</h2>
+        <p>Go back to the <a href="{{ url_for('main.index')}}">homepage</a> or view our <a href="{{ url_for('bungalows.zoek')}}">available bungalows</a>.</p>
+    </div>
+</div>
+
+{% endblock %}

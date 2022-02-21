@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <form class="mt-5" action="" method="post">
+        <h1 class="h2 mb-4 font-weight-normal">Add bungalow</h1>
+            <div class="row">
+                <div class="form-group col-md-7">
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{category}}">
+                            {{message}}
+                        </div>
+                        {% endfor%}
+                    {% endif%}
+                    {% endwith %}
+
+                    {{ form.hidden_tag() }}
+                    
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                    {{ form.name(class="form-control form-control-lg is-invalid", autocomplete="off") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.name(class="form-control form-control-lg", autocomplete="off") }}
+                {% endif %}
+                </div>
+            </div>   
+            <div class="row">
+                <div class="form-group col-md-7">
+                    {{ form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid", autocomplete="off") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.content(class="form-control form-control-lg", autocomplete="off") }}
+                {% endif %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-7">
+        
+                    {{ form.bungalow_type.label(class="form-control-label") }}
+                    {% if form.bungalow_type.errors %}
+                    {{ form.bungalow_type(class="form-control form-control-lg is-invalid", autocomplete="off") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.bungalow_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.bungalow_type(class="form-control form-control-lg", autocomplete="off") }}
+                {% endif %}
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-md-7">
+        
+                    {{ form.weekprice.label(class="form-control-label") }}
+                    {% if form.weekprice.errors %}
+                    {{ form.weekprice(class="form-control form-control-lg is-invalid", autocomplete="off") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.weekprice.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.weekprice(class="form-control form-control-lg", autocomplete="off") }}
+                {% endif %}
+                </div>
+            </div>
+            
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

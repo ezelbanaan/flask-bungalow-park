@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    {% if css %}
+    <link rel="stylesheet" href="/static/css/{{css}}">
+    {% endif %}
+
+    {% if title %}
+    <title>{{ title }} | Bungalowpark Zee en Duin</title>
+    {% else %}
+    <title>Bungalowpark Zee en Duin</title>
+    {% endif %}
+</head>
+<body>
+
+<nav class="navbar navbar-light navbar-expand-lg bg-light">
+    <div class="container">
+        <a class="navbar-brand h1" href="{{ url_for('main.index')}}">
+            <img src="{{ url_for('static', filename='img/logo.png')}}" height="30" class="d-inline-block align-top" alt="">
+            Bungalowpark Zee en Duin
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.index')}}">Home</a>
+              </li>
+              
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('bungalows.zoek')}}">Search & Book</a>
+              </li>
+              {% if current_user.is_authenticated %}
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.account')}}">My account</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.uitloggen')}}">Log out</a>
+              </li>
+              {% else %}
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.inloggen')}}">Login</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.registreren')}}">Register</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
